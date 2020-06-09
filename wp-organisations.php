@@ -53,6 +53,7 @@ final class WPOrganisations {
     public function includes()
     {
         include_once( WPO_PLUGIN_PATH . 'includes/class-wpo-organisations-holder-page.php' );
+        include_once( WPO_PLUGIN_PATH . 'includes/class-wpo-organisation-user.php' );
     }
 
 }
