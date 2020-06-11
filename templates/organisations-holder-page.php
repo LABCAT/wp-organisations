@@ -109,7 +109,8 @@ if($current_user->ID){
                             global $post;
                             echo wpautop( get_post_meta( $post->ID, '_promo_text_content', true ) );
                             if( $is_job_lister ){
-                                echo '<a href="/profile/" class="button">Update Your Profile</a>';
+
+                                echo '<a href="' . get_permalink( JR_User_Profile_Page::get_id() ) . '" class="button">Update Your Profile</a>';
                             }
                             else {
                                 echo '<a href="/contact/" class="button">Contact Us</a>';
