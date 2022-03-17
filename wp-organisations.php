@@ -3,18 +3,14 @@
  * Plugin Name: WP Organisations
  * Description: 
  * Version: 1.0.0
- * Author: MySite Digital
- * Author URI: https://mysite.digital
+ * Author: Shane Watters
+ * Author URI: https://dogoodjobs.co.nbz
  * Requires at least: 5.3
  * Tested up to: 5.3
  */
-namespace MySiteDigital;
+namespace DoGoodJobs;
 
-
-if ( ! defined( 'ABSPATH' ) ) {
-    exit; // Exit if accessed directly.
-}
-
+if ( ! defined('ABSPATH')) exit;  // if direct access 
 
 /**
  * Main WPOrganisations Class.
@@ -52,8 +48,8 @@ final class WPOrganisations {
      */
     public function includes()
     {
-        include_once( WPO_PLUGIN_PATH . 'includes/class-wpo-organisations-holder-page.php' );
-        include_once( WPO_PLUGIN_PATH . 'includes/class-wpo-organisation-user.php' );
+        include_once( WPO_PLUGIN_PATH . 'includes/class-organisation-post-type.php' );
+        include_once( WPO_PLUGIN_PATH . 'includes/class-organisation-registration-shortcode.php' );
     }
 
 }
