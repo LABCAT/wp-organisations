@@ -6,7 +6,7 @@ import StartingFields from './components/StartingFields.js';
 function App() {
     return (
         <GlobalContextProvider>
-          <form>
+          <form class="job-manager-form">
             <StartingFields/>
             <input type="submit" value="Register" />
           </form>

@@ -51,15 +51,22 @@ class OrganisationRegistration {
 	 * @return string|null
 	 */
 	public function org_registration_form( $atts = [] ) {
-		//$this->enqueue_scripts();
+		$this->enqueue_scripts();
 		ob_start();
 		if( is_user_logged_in() ) {
 			echo '<div class="job-manager-error">You are already registered.</div>';
 		}
 		else {
-			echo '<div class="org-registration-form"></div>';
+			echo '<div id="org-registration-form"></div>';
 		}
 		return ob_get_clean();
+	}
+
+	/**
+	 * Enqueue the scripts for the form.
+	 */
+	public function enqueue_scripts() {
+		wp_enqueue_script( 'wp-organisations', WPO_PLUGIN_URL . '/assets/dist/js/main.js', [], false, false );
 	}
 }
 
