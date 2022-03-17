@@ -42,6 +42,8 @@ class OrganisationRegistration {
 	 */
 	public function __construct() {
 		add_shortcode( 'org_registration_form', [ $this, 'org_registration_form' ] );
+		add_action( 'wp_ajax_availability_check', [ $this, 'availability_check' ] );
+		add_action( 'wp_ajax_nopriv_availability_check', [ $this, 'availability_check' ] );
 	}
 
 	/**
@@ -57,7 +59,7 @@ class OrganisationRegistration {
 			echo '<div class="job-manager-error">You are already registered.</div>';
 		}
 		else {
-			echo '<div id="org-registration-form"></div>';
+			echo '<div id="org-registration-form" data-ajax-url="' . admin_url( 'admin-ajax.php' ) . '"></div>';
 		}
 		return ob_get_clean();
 	}
@@ -67,6 +69,32 @@ class OrganisationRegistration {
 	 */
 	public function enqueue_scripts() {
 		wp_enqueue_script( 'wp-organisations', WPO_PLUGIN_URL . '/assets/dist/js/main.js', [], false, false );
+	}
+
+	/**
+	 * Function call via JS to check if user account is available and organisation name is unique
+	 */
+	public function availability_check() {
+		
+		if ( isset($_REQUEST) ) {
+			if ( ! isset($_REQUEST['email']) || ! isset($_REQUEST['organisation']) ) {
+				echo json_encode(['error' => 'Email and organisation fields are required']);
+    			wp_die();
+			}
+
+			$email = sanitize_email( $_REQUEST['email'] );
+			$organisation = sanitize_text_field( $_REQUEST['organisation'] );
+			echo json_encode(
+				[
+					'emailAvailable' => ! email_exists( $email ),
+					'orgAvailable' => ! post_exists( $organisation, '', '', 'organisation'),
+				]
+			);
+			wp_die();
+    	}
+
+		echo json_encode(['error' => 'There was an error handling your request, please contact the administrator']);
+    	wp_die();
 	}
 }
 
