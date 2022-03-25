@@ -46,6 +46,48 @@ class OrganisationRegistration {
 		add_action( 'wp_ajax_nopriv_availability_check', [ $this, 'availability_check' ] );
 	}
 
+	public function get_organisation_types(){
+        $types = [];
+
+        $terms = get_terms( 
+            [
+                'taxonomy' => 'organisation_type',
+                'hide_empty' => false,
+            ]
+        );
+
+        foreach ( $terms as $term ) {
+			$types[ $term->slug ] = [
+				'ID'            => $term->term_id,
+				'key'           => $term->slug,
+				'label'         => $term->name,
+			];
+        }
+
+        return $types;
+   }
+
+   public function get_organisation_sizes(){
+        $sizes = [];
+
+        $terms = get_terms( 
+            [
+                'taxonomy' => 'organisation_size',
+                'hide_empty' => false,
+            ]
+        );
+
+        foreach ( $terms as $term ) {
+			$sizes[ $term->slug ] = [
+				'ID'            => $term->term_id,
+				'key'           => $term->slug,
+				'label'         => $term->name,
+			];
+        }
+
+        return $sizes;
+   }
+
 	/**
 	 * Outputs the div required by react to display the Organisations Registration Form
 	 *
@@ -69,6 +111,15 @@ class OrganisationRegistration {
 	 */
 	public function enqueue_scripts() {
 		wp_enqueue_script( 'wp-organisations', WPO_PLUGIN_URL . '/assets/dist/js/main.js', [], false, false );
+
+        wp_localize_script(
+            'wp-organisations',
+            'wpOrgsData',
+            [
+                'orgTypes' => json_encode( $this->get_organisation_types() ),
+                'orgSizes' => json_encode( $this->get_organisation_sizes() ),
+            ]
+        );
 	}
 
 	/**

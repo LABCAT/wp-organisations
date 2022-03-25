@@ -3,8 +3,8 @@ import React, { createContext, useReducer } from 'react';
 import Reducer from "./Reducer";
 
 const initialState = {
-    emailAvailable: true,
-    organisationAvailable: true,
+    emailAvailable: false,
+    organisationAvailable: false,
 }
 
 export const Context = createContext(initialState);
