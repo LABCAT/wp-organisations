@@ -96,8 +96,8 @@ class Organisation{
                     ],
                     'show_ui'               => true,
                     'show_tagcloud'         => false,
-                    'show_in_quick_edit'    => false,
-                    'meta_box_cb'           => false,
+                    //'show_in_quick_edit'    => false,
+                    //'meta_box_cb'           => false,
                     'public'                => false,
                     'show_in_rest'          => false,
 
@@ -140,8 +140,8 @@ class Organisation{
                     ],
                     'show_ui'               => true,
                     'show_tagcloud'         => false,
-                    'show_in_quick_edit'    => false,
-                    'meta_box_cb'           => false,
+                    //'show_in_quick_edit'    => false,
+                    //'meta_box_cb'           => false,
                     'public'                => false,
                     'show_in_rest'          => false,
 

@@ -4,8 +4,10 @@ import { Context } from '../context/Context.js';
 
 export default function StartingFields() {
 	const 	{ 
+				availabilityChecked,
 				emailAvailable,
 				organisationAvailable,
+				setAvailabilityChecked,
 				setEmailAvailable, 
 				setOrganisationAvailable,
 			} = useContext(Context),
@@ -13,7 +15,6 @@ export default function StartingFields() {
 			app = document.getElementById('org-registration-form'), 
 			ajaxURL = app.getAttribute('data-ajax-url'),
 
-			[ availabilityChecked, setAvailabilityChecked ] = useState(false),
 			[ email, setEmail ] = useState(''),
 			[ organisation, setOrganisation ] = useState(''),
 
@@ -40,7 +41,6 @@ export default function StartingFields() {
 						})
 						.then((response: Response) => response.json())
 						.then((json) => {
-								console.log(json)
 								setAvailabilityChecked(true);
 								setEmailAvailable(json.emailAvailable);
 								setOrganisationAvailable(json.orgAvailable);

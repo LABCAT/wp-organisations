@@ -12,6 +12,15 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="org-registration-form" data-ajax-url="http://jobs.dogood.ms/wp/wp-admin/admin-ajax.php"></div>
+    <div 
+      id="org-registration-form" 
+      data-ajax-url="http://jobs.dogood.ms/wp/wp-admin/admin-ajax.php" 
+      data-nonce="6e0580b2d3"
+      data-action="/employers/registration/"
+    >
+    </div>
+    <script id='wp-organisations-js-extra'>
+      var wpOrgsData = { "orgTypes": [{ "ID": 7, "key": "test", "label": "test" }, { "ID": 8, "key": "test-2", "label": "test 2" }], "orgSizes": [{ "ID": 9, "key": "1-10", "label": "1 -10" }, { "ID": 10, "key": "10-15", "label": "10 -15" }] };
+    </script>
   </body>
 </html>
