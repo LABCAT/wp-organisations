@@ -1,0 +1,18 @@
+{
+    "name": "DoGoodJobs/wp-organisations",
+    "description": "Organisation profiles for WP Job Manager",
+    "keywords": [
+        "wordpress",
+        "plugin"
+    ],
+    "authors": [
+        {
+            "name": "Shane Watters",
+            "homepage": "https://labcat.nz"
+        }
+    ],
+    "type": "wordpress-plugin",
+    "require": {
+        "php": ">=7.4"
+    }
+}
